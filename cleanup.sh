@@ -66,11 +66,11 @@ RedirectURI=${url}/api/dex/callback
 PGPASSWORD=$PGPASSWORD psql -h $DB_HOST -p $DB_PORT -U $DB_USER_NAME -d $ORCHESTRATOR_DB -t -c "INSERT INTO sso_login_config (id, name, url, config, created_on, created_by, updated_on, updated_by, active) 
 VALUES (1, 'google','$url' ,'{\"id\":\"google\",\"type\":\"oidc\",\"name\":\"Google\",\"config\":{\"clientID\":\"$ClientID\",\"clientSecret\":\"$ClientSecret\",\"hostedDomains\":[\"devtron.ai\"],\"issuer\":\"https://accounts.google.com\",\"redirectURI\": \"$RedirectURI\"}}', NOW(), 1, NOW(), 1, true) ;"
 
-echo "Cleaning up Chart Repo"
-PGPASSWORD=$PGPASSWORD psql -h $DB_HOST -p $DB_PORT -U $DB_USER_NAME -d $ORCHESTRATOR_DB -t -c "TRUNCATE TABLE chart_repo RESTART IDENTITY CASCADE;"
+# echo "Cleaning up Chart Repo"
+# PGPASSWORD=$PGPASSWORD psql -h $DB_HOST -p $DB_PORT -U $DB_USER_NAME -d $ORCHESTRATOR_DB -t -c "TRUNCATE TABLE chart_repo RESTART IDENTITY CASCADE;"
 
-echo "Adding Devtron-Charts"
-PGPASSWORD=$PGPASSWORD psql -h $DB_HOST -p $DB_PORT -U $DB_USER_NAME -d $ORCHESTRATOR_DB -t -c "INSERT INTO chart_repo (id, name, url ,is_default , active , created_on , created_by , updated_on , updated_by, external, deleted, allow_insecure_connection) 
-VALUES ('1','Devtron-Charts','https://devtron-labs.github.io/helm-pilot/','f','t',NOW(),'1',NOW(),'1','t','f','f') ;"
+# echo "Adding Devtron-Charts"
+# PGPASSWORD=$PGPASSWORD psql -h $DB_HOST -p $DB_PORT -U $DB_USER_NAME -d $ORCHESTRATOR_DB -t -c "INSERT INTO chart_repo (id, name, url ,is_default , active , created_on , created_by , updated_on , updated_by, external, deleted, allow_insecure_connection) 
+# VALUES ('1','Devtron-Charts','https://devtron-labs.github.io/helm-pilot/','f','t',NOW(),'1',NOW(),'1','t','f','f') ;"
 
 echo "Cleanup done Successfully"
